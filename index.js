@@ -5,7 +5,6 @@ const express = require('express')
 const app = express();
 const PORT = process.env.PORT || 3001;
 var cors = require('cors');
-
 app.use(cors());
 
 app.get('/get-list', async (req, res) => {
