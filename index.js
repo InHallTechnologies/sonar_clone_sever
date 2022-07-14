@@ -20,6 +20,39 @@ app.get('/get-list', async (req, res) => {
     res.send(response.data)
 })
 
+app.get('/project-last-analysis', async (req, res) => {
+    const { projectKey } = req.query;
+    const response = await axios.get('https://sonarcloud.io/api/projects/search', {
+        params: {
+            'organization': 'diageoglobalcms',
+            "projects": projectKey
+        },
+        auth: {
+            username: 'adf3d00f6d75626f1d7ef37dd830395e749c65e0'
+        }
+    });
+    res.send(response.data.components[0])
+})
+
+app.get('/project-languages', async (req, res) => {
+    const { projectKey } = req.query;
+    try {
+        const response = await axios.get('https://sonarcloud.io/api/languages/list', {
+            params: {
+                's': "name",
+                'q': "r"
+            },
+            auth: {
+                username: 'adf3d00f6d75626f1d7ef37dd830395e749c65e0'
+            }
+        });
+        res.send(response.data)
+    }catch(err) {
+        res.send(err)
+    }
+   
+})
+
 app.get('/measures', async (req, res) => {
     const { projectKey } = req.query;
     try {
@@ -65,15 +98,15 @@ app.get('/project-meta-data', async (req, res) => {
 app.get('/duplications', async (req, res) => {
     try {
 
-        const response = await axios.get('https://sonarcloud.io/api/project_badges/measure', {
+        const response = await axios.get('https://sonarcloud.io/api/project_badges/quality_gate', {
             auth: {
                 username: 'adf3d00f6d75626f1d7ef37dd830395e749c65e0'
             },
             params: {
-                'metricKeys': 'ncloc,complexity,violations,reliability',
-                'project':'InHallTechnologies_estimation-tool-server',
-                'metric': 'sqale_rating',
-                'additionalFields': 'periods,metrics'
+                'project':'cms-60622fargate_diageotest_com',
+                'metric': 'duplicated_lines_density',
+                'token': 'adf3d00f6d75626f1d7ef37dd830395e749c65e0',
+                'organization': 'diageoglobalcms'
             },
         });
         res.send(response.data)
@@ -98,6 +131,10 @@ app.get('/hotspots', async (req, res) => {
     } catch (err) {
         res.send(err)
     }
+})
+
+app.get('/project-metadata', async (req, res) => {
+    
 })
 
 
@@ -167,3 +204,6 @@ app.listen(PORT, () => {
 // curl -u adf3d00f6d75626f1d7ef37dd830395e749c65e0: https://diageo-analyzer.integralzone.com/api/user_tokens/search
 
 // curl /api/issues/search?ps=1&projectKey=<PROJECT_KEY>&facets=types
+
+
+// curl -L -v -u adf3d00f6d75626f1d7ef37dd830395e749c65e0: https://sonarcloud.io/api/project_badges/measure?project=cms-60622fargate_diageotest_com&metric=duplicated_lines_density
