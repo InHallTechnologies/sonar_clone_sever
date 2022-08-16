@@ -313,6 +313,11 @@
   "resolved" "https://registry.npmjs.org/negotiator/-/negotiator-0.6.3.tgz"
   "version" "0.6.3"
 
+"nodemailer@^6.7.8":
+  "integrity" "sha512-2zaTFGqZixVmTxpJRCFC+Vk5eGRd/fYtvIR+dl5u9QXLTQWGIf48x/JXvo58g9sa0bU6To04XUv554Paykum3g=="
+  "resolved" "https://registry.npmjs.org/nodemailer/-/nodemailer-6.7.8.tgz"
+  "version" "6.7.8"
+
 "object-assign@^4":
   "integrity" "sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg=="
   "resolved" "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz"

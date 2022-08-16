@@ -93,3 +93,7 @@ router.get("/quality-gate", async (req, res) => {
 // sougata.choudhury@diageo.com
 
 module.exports = router
+
+// RK
+// https://github.com/InHallTechnologies/consolidated-dashboard-sougata.git
+// https://github.com/InHallTechnologies/sonar_clone_sever.git

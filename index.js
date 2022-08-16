@@ -4,9 +4,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 var cors = require('cors');
 const router = require('./routes/izanalyser');
+const mailRouter = require('./routes/mail-handler');
 
 app.use(cors());
 app.use('/izanalyser',router)
+app.use('/send-mail', mailRouter)
 
 app.get('/get-list', async (req, res) => {
     const response = await axios.get('https://sonarcloud.io/api/projects/search', {
