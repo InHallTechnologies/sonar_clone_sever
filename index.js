@@ -1,11 +1,12 @@
-const {
-    default: axios
-} = require('axios');
+const { default: axios } = require('axios');
 const express = require('express')
 const app = express();
 const PORT = process.env.PORT || 3001;
 var cors = require('cors');
+const router = require('./routes/izanalyser');
+
 app.use(cors());
+app.use('/izanalyser',router)
 
 app.get('/get-list', async (req, res) => {
     const response = await axios.get('https://sonarcloud.io/api/projects/search', {
@@ -94,7 +95,6 @@ app.get('/project-meta-data', async (req, res) => {
     }
 })
 
-
 app.get('/duplications', async (req, res) => {
     try {
 
@@ -135,62 +135,6 @@ app.get('/hotspots', async (req, res) => {
 
 app.get('/project-metadata', async (req, res) => {
     
-})
-
-
-// IZ Analyser Routes
-app.get('/izanalyser/get-projects', async (req, res) => {
-    const response = await axios.get('https://diageo-analyzer.integralzone.com/api/projects/search', {
-        params: {
-            'organization': 'diageoglobalcms',
-            "ps": 5
-        },
-        auth: {
-            username: 'b0254068a01a43123ab075d380332164348d4231'
-        }
-    });
-    res.send(response.data)
-   
-})
-
-app.get('/izanalyser/measures', async (req, res) => {
-    const { projectKey } = req.query;
-    console.log(projectKey)
-    try {
-
-        const response = await axios.get('https://diageo-analyzer.integralzone.com/api/measures/component', {
-            auth: {
-                username: 'b0254068a01a43123ab075d380332164348d4231'
-            },
-            params: {
-                'metricKeys': 'ncloc,complexity,violations',
-                'component': projectKey,
-                'additionalFields': 'periods,metrics',
-            },
-        });
-        res.send(response.data)
-    } catch (err) {
-        res.send(err)
-    }
-})
-
-
-app.get('/izanalyser/project-meta-data', async (req, res) => {
-    const { projectKey, type } = req.query;
-    try {
-        const response = await axios.get('https://diageo-analyzer.integralzone.com/api/issues/search', {
-            auth: {
-                username: 'b0254068a01a43123ab075d380332164348d4231'
-            },
-            params: {
-                'componentKeys': projectKey,
-                'types': type,
-            },
-        });
-        res.send(response.data)
-    } catch (err) {
-        res.send(err)
-    }
 })
 
 
