@@ -24,7 +24,7 @@ mailRouter.get("/send-exceptional-request", (req, res) => {
 
     const mailOptions = {
         from: `krati@inhall.in`,
-        to: `rv.rishabhverma1996@gmail.com`,
+        to: `sougata.choudhury@diageo.com`,
         subject: `Exceptional Approval for ${projectId}`,
         html: `
             <h3>Exceptional Approval for <strong>${projectId}</strong></h3>
