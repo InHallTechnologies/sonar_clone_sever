@@ -17,13 +17,13 @@ mailRouter.get("/send-exceptional-request", (req, res) => {
         port: 465,
         debug: true,
         auth: {
-            user: "krati@inhall.in",
-            pass: "Rishabhmylove#1" 
+            user: "info@inhall.in",
+            pass: "qazplm@098" 
         }
     });
 
     const mailOptions = {
-        from: `krati@inhall.in`,
+        from: `info@inhall.in`,
         to: `sougata.choudhury@diageo.com`,
         subject: `Exceptional Approval for ${projectId}`,
         html: `
@@ -56,13 +56,13 @@ mailRouter.get('/send-exceptional-request-mail-response', (req, res) => {
         port: 465,
         debug: true,
         auth: {
-            user: "krati@inhall.in",
-            pass: "Rishabhmylove#1" 
+            user: "info@inhall.in",
+            pass: "qazplm@098" 
         }
     });
 
     const mailOptions = {
-        from: `krati@inhall.in`,
+        from: `info@inhall.in`,
         to: mailTo,
         subject: `Response: Exceptional Approval for ${projectId}`,
         html: `
